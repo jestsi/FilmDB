@@ -32,6 +32,8 @@ public class NpgSelfManager : INotifyPropertyChanged
     public NpgSelfManager()
     {
         table = GenericObject.Convert(GetData("select * from \"FilmDatas\""));
+
+        
     }
     private void connection()
     {

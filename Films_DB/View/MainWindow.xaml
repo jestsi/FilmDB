@@ -11,14 +11,11 @@
         <VM:ApplicationViewModel/>
     </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
         <DataGrid 
                   IsReadOnly="True" 
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
-                  DataContext="{Binding  Path=Manager.Table}">
+                  DataContext="{Binding Path=Manager.Table}">
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Name"

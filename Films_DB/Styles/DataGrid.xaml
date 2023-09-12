@@ -6,19 +6,9 @@
                 Value="White" />
         <Setter Property="Foreground"
                 Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1"
-                                     StartPoint="0.5,0">
-                    <GradientStop Color="{DynamicResource BorderLightColor}"
-                                  Offset="0" />
-                    <GradientStop Color="{DynamicResource BorderDarkColor}"
-                                  Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderBrush" Value="Black"/> 
         <Setter Property="BorderThickness"
-                Value="0" />
+                Value="0, 0, 0, 1" />
         <Setter Property="GridLinesVisibility"
                 Value="Horizontal" />
         <Setter Property="HorizontalGridLinesBrush"
@@ -151,40 +141,26 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Background"
-                Value="{DynamicResource ColumnHeaderGripperStyle}" />
+                Value="White" />
+        <Setter Property="Foreground"
+                Value="Black" />
         <Setter Property="FontWeight"
                 Value="SemiBold" />
         <Setter Property="Padding"
-                Value="10" />
+                Value="5, 0" />
         <Setter Property="MinWidth"
                 Value="25" />
+        <Setter Property="Height"
+                Value="32" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <Grid>
                         <Border x:Name="columnHeaderBorder"
                                 BorderThickness="1"
-                                Padding="3,0,3,0">
-                            <Border.BorderBrush>
-                                <LinearGradientBrush EndPoint="0.5,1"
-                                                     StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource BorderLightColor}"
-                                                  Offset="0" />
-                                    <GradientStop Color="{DynamicResource BorderDarkColor}"
-                                                  Offset="1" />
-                                </LinearGradientBrush>
-                                
-                            </Border.BorderBrush>
-                            
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0.5,1"
-                                                     StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource ControlLightColor}"
-                                                  Offset="0" />
-                                    <GradientStop Color="{DynamicResource ControlMediumColor}"
-                                                  Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
+                                Padding="3,0,3,0"
+                                BorderBrush="DodgerBlue"
+                                Background="DodgerBlue">
                             <Grid Margin="{TemplateBinding Padding}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -193,7 +169,9 @@
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                                <StackPanel Orientation="Horizontal" 
+                                            Grid.Column="1" 
+                                            Margin="5,0,0,0">
                                     <Path x:Name="SortUpIcon"
                                           Data="{DynamicResource SortUp}"
                                           Height="{TemplateBinding FontSize}"
@@ -221,37 +199,45 @@
                         <Trigger Property="SortDirection" Value="Ascending">
                             <Setter TargetName="SortDownIcon"
                                     Property="Fill"
-                                    Value="{DynamicResource ControlLightColor}"/>
+                                    Value="Black"/>
                         </Trigger>
                         <Trigger Property="SortDirection" Value="Descending">
                             <Setter TargetName="SortUpIcon"
                                     Property="Fill"
-                                    Value="{DynamicResource ControlLightColor}"/>
+                                    Value="Black"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Background">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    
+    <Style TargetType="DataGridCell">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
             <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1"
-                                     StartPoint="0.5,0">
-                    <GradientStop Color="{DynamicResource ControlLightColor}"
-                                  Offset="0" />
-                    <GradientStop Color="{DynamicResource ControlMediumColor}"
-                                  Offset="1" />
-                </LinearGradientBrush>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style TargetType="{x:Type DataGridRow}">
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
-            </Setter.Value>
-        </Setter>
+        
         <Setter Property="SnapsToDevicePixels"
                 Value="true" />
+        <Setter Property="MinHeight"
+                Value="30" />
         <Setter Property="Validation.ErrorTemplate"
                 Value="{x:Null}" />
         <Setter Property="ValidationErrorTemplate">
