@@ -7,18 +7,15 @@ namespace Films_DB.Model;
 
 public class GenericObject
 {
-    private readonly ObservableCollection<GenericProperty> properties = new ObservableCollection<GenericProperty>();
+    private readonly ObservableCollection<GenericProperty> properties = new();
 
-    public GenericObject(params GenericProperty[] properties)
+    private GenericObject(params GenericProperty[] properties)
     {
         foreach (var property in properties)
             Properties.Add(property);
     }
 
-    public ObservableCollection<GenericProperty> Properties
-    {
-        get { return properties; }
-    }
+    public ObservableCollection<GenericProperty> Properties => properties;
 
     public object? Find(string nameProp)
     {
@@ -52,7 +49,7 @@ public class GenericProperty : INotifyPropertyChanged
     }
 
     public string Name { get; private set; }
-    public object Value { get; set; }
+    public object Value { get; private set; }
 
 
     public event PropertyChangedEventHandler PropertyChanged;

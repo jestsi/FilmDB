@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="4ad83f4c-75ec-4397-9509-3169f0449050" />
+          <option name="name" value="DDL data source" />
+          <option name="dbmsName" value="POSTGRES" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/../../../Downloads/dbexport.pgsql" />
+            </array>
+          </option>
+          <option name="outLayout" value="File per object by schema.groovy" />
+          <option name="autoSync" value="false" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
