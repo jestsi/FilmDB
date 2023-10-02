@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using Films_DB.Commands;
 using Films_DB.Model;
 
@@ -12,6 +13,14 @@ public class ApplicationViewModel : INotifyPropertyChanged
 {
     private NpgSelfManager manager;
     private ObservableCollection<GenericObject> toShowTable;
+    private string searchText;
+
+    public string SearchText
+    {
+        get => searchText;
+        set => SetField(ref searchText, value);
+    }
+
     public NpgSelfManager Manager
     {
         get => manager;
@@ -48,8 +57,9 @@ public class ApplicationViewModel : INotifyPropertyChanged
     {
         get
         {
-            return clearSearch ??= new RelayCommand(_ =>
+            return clearSearch ??= new RelayCommand((obj) =>
             {
+                SearchText = "";
                 ToShowTable = manager.Table;
             });
         }

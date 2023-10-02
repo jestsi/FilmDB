@@ -22,6 +22,8 @@ public sealed class NpgSelfManager : INotifyPropertyChanged
     
     public NpgSelfManager()
     {
+       // SetMoreData(160);
+
         table = GenericObject.Convert(GetData("select * from \"FilmDatas\""));
     }
 
