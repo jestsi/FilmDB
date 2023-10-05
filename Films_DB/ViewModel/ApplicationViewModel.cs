@@ -44,21 +44,19 @@ public class ApplicationViewModel : INotifyPropertyChanged
     {
         get
         {
-            return search ?? 
-                   (search = new RelayCommand((obj) =>
-                   {
-                       if (searchText is "" or " ") return;
-                       var result = manager.Search(searchText, (int)obj);
-                       if (result.Count == 0)
-                       {
-                           MessageBox.Show("Error finding", "No results");
-
-                           ToShowTable = new ObservableCollection<GenericObject>();
-                       } else
-                       {
-                           ToShowTable = result;
-                       }
-                   }));
+            return search ??= new RelayCommand((obj) =>
+            {
+                if (searchText is "" or " ") return;
+                var result = manager.Search(searchText, (int)obj);
+                if (result.Count == 0)
+                {
+                    MessageBox.Show("Error finding", "No results");
+                    ToShowTable = new ObservableCollection<GenericObject>();
+                } else
+                {
+                    ToShowTable = result;
+                }
+            });
         }
     }
     

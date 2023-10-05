@@ -68,7 +68,6 @@
                      Grid.ColumnSpan="2"
                      FontSize="14"
                      Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                    
                      Margin="5, 1"
                      Foreground="Black"
                      VerticalContentAlignment="Center" 
@@ -109,8 +108,8 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontWeight="Bold">Find</TextBlock>
         </Border>
-        <ComboBox Margin="5 10 5 10" x:Name="selectFindingData">
-            <ComboBoxItem Content="Name"/>
+        <ComboBox  IsSynchronizedWithCurrentItem="True" Margin="5 10 5 10" x:Name="selectFindingData">
+            <ComboBoxItem IsSelected="True" Content="Name"/>
             <ComboBoxItem Content="Description"/>
         </ComboBox>
     </Grid>
