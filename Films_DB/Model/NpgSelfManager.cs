@@ -35,17 +35,28 @@ public sealed class NpgSelfManager : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public ObservableCollection<GenericObject> Search(string finding_data)
+    public ObservableCollection<GenericObject> Search(string finding_data, int find_data_type = -1)
     {            
         ObservableCollection<GenericObject> res = new();
-        
+
+        var variants = new List<string>{ "Name", "Description" };
+
         foreach (var obj in table)
         {
-            var x = obj.Properties.FirstOrDefault(x => x.Value.ToString()
-                .Contains(finding_data, StringComparison.InvariantCultureIgnoreCase));
+            var x = obj.Properties.FirstOrDefault();
+
+            if (find_data_type == -1)
+            {
+                 x = obj.Properties.FirstOrDefault(x => x.Value.ToString()
+                    .Contains(finding_data, StringComparison.InvariantCultureIgnoreCase));
+            } else
+            {
+                x = obj.Properties.FirstOrDefault(x => x.Value.ToString()
+                        .Contains(finding_data, StringComparison.InvariantCultureIgnoreCase) && x.Name == variants[find_data_type]);
+            }
             if (x is not null) res.Add(obj);
         }
-        return res.Count == 0 ? table : res;
+        return res;
     }
     
     private void connection()
@@ -119,12 +130,12 @@ public sealed class NpgSelfManager : INotifyPropertyChanged
         return web.DownloadString(url);
     }
 
-    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(field, value)) return false;
         field = value;

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using Films_DB.Commands;
 using Films_DB.Model;
@@ -46,10 +47,18 @@ public class ApplicationViewModel : INotifyPropertyChanged
             return search ?? 
                    (search = new RelayCommand((obj) =>
                    {
-                       var objInStr = obj.ToString();
-                       if (objInStr is "" or " ") return;
-                ToShowTable = manager.Search(objInStr);
-            }));
+                       if (searchText is "" or " ") return;
+                       var result = manager.Search(searchText, (int)obj);
+                       if (result.Count == 0)
+                       {
+                           MessageBox.Show("Error finding", "No results");
+
+                           ToShowTable = new ObservableCollection<GenericObject>();
+                       } else
+                       {
+                           ToShowTable = result;
+                       }
+                   }));
         }
     }
     

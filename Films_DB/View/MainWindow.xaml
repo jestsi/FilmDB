@@ -16,13 +16,14 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <DataGrid
             Grid.Row="1"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="4"
             IsReadOnly="True" 
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
@@ -53,6 +54,7 @@
         </DataGrid>
         <Border
             Grid.Row="0" 
+            Grid.Column="1"
             Grid.ColumnSpan="2"
             BorderThickness="3"
             BorderBrush="DodgerBlue"
@@ -65,7 +67,8 @@
                      Grid.Row="0" 
                      Grid.ColumnSpan="2"
                      FontSize="14"
-                     Text="{Binding SearchText}"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                    
                      Margin="5, 1"
                      Foreground="Black"
                      VerticalContentAlignment="Center" 
@@ -75,7 +78,7 @@
         </Border>
         
         
-        <Border Grid.Column="1" Width="25" Height="25"
+        <Border Grid.Column="2" Width="25" Height="25"
                 HorizontalAlignment="Right" 
                 Margin="0 0 15 0" 
                 Background="Transparent"
@@ -90,7 +93,7 @@
             </Border.InputBindings>
             <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">X</TextBlock>
         </Border>
-        <Border Grid.Column="2"
+        <Border Grid.Column="3"
                 Margin="5"
                 Background="DodgerBlue"
                 BorderBrush="Transparent"
@@ -99,12 +102,16 @@
                 <MouseBinding 
                     MouseAction="LeftClick" 
                     Command="{Binding Search}"
-                    CommandParameter="{Binding Text, ElementName=InputSearch}"/>
+                    CommandParameter="{Binding SelectedIndex, ElementName=selectFindingData}"/>
             </Border.InputBindings>
             <TextBlock Foreground="White" 
                        TextAlignment="Center" 
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontWeight="Bold">Find</TextBlock>
         </Border>
+        <ComboBox Margin="5 10 5 10" x:Name="selectFindingData">
+            <ComboBoxItem Content="Name"/>
+            <ComboBoxItem Content="Description"/>
+        </ComboBox>
     </Grid>
 </Window>
